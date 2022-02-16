@@ -9,12 +9,11 @@ function App(): JSX.Element {
                 Anissa Spano UD CISC275 Starter Website
             </header>
             <p>
-                Hello World! Edit <code>src/App.tsx</code> and save. This page
-                will automatically reload.
+                Hello World! Edit <code>src/App.tsx</code> and save.
             </p>
             <div>
                 {" "}
-                <h1> My Favorite Band Tame Impala </h1>
+                <h1> Tame Impala </h1>
                 <img
                     src="https://mrhsridgereview.org/wp-content/uploads/2021/10/I2IUU5K2LOCDXNU5PTVNYG75ZI.jpg"
                     alt="A picture of my favorite band Tame Impala"
