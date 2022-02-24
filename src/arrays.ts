@@ -5,18 +5,10 @@
  * the number twice.
  */
 export function bookEndList(numbers: number[]): number[] {
-    let finalArray = [];
-    numbers.length < 1;
-    {
+    let finalArray: number[] = [];
+    finalArray = [numbers[0], numbers[numbers.length - 1]];
+    if (numbers.length == 0) {
         finalArray = [];
-    }
-    numbers.length < 2;
-    {
-        finalArray = [...numbers, ...numbers];
-    }
-    numbers.length > 2;
-    {
-        finalArray = [numbers[0], numbers[length - 1]];
     }
     return finalArray;
 }
@@ -35,7 +27,10 @@ export function tripleNumbers(numbers: number[]): number[] {
  * the number cannot be parsed as an integer, convert it to 0 instead.
  */
 export function stringsToIntegers(numbers: string[]): number[] {
-    const str = numbers.map((number: string): number => parseInt(number));
+    const stringToInteger = (number: string): number => {
+        return parseInt(number) || 0;
+    };
+    const str = numbers.map(stringToInteger);
     return str;
 }
 
@@ -47,12 +42,14 @@ export function stringsToIntegers(numbers: string[]): number[] {
  */
 // Remember, you can write functions as lambdas too! They work exactly the same.
 export const removeDollars = (amounts: string[]): number[] => {
-    const removeSymbol = amounts.filter(
-        (amount: string[0]): boolean => amount[0] == "$"
-    );
-    const dollarAmounts = removeSymbol.map((amount: string): number =>
-        parseInt(amount)
-    );
+    const removeDollar = (amount: string): number => {
+        const substring = "$";
+        if (amount.includes(substring)) {
+            amount = amount.substring(1);
+        }
+        return parseInt(amount) || 0;
+    };
+    const dollarAmounts = amounts.map(removeDollar);
     return dollarAmounts;
 };
 
@@ -111,16 +108,17 @@ export function allRGB(colors: string[]): boolean {
  * And the array [] would become "0=0".
  */
 export function makeMath(addends: number[]): string {
+    let finalNums;
+    addends.length < 1;
+    {
+        finalNums = "0=0";
+    }
     const sum = addends.reduce(
         (currentTotal: number, num: number) => currentTotal + num,
         0
     );
     const theNums = addends.join("+");
-    let finalNums = sum + "=" + theNums;
-    addends.length < 1;
-    {
-        finalNums = "0=0";
-    }
+    finalNums = sum + "=" + theNums;
     return finalNums;
 }
 
