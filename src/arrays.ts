@@ -115,15 +115,16 @@ export function allRGB(colors: string[]): boolean {
  */
 export function makeMath(addends: number[]): string {
     let finalNums;
-    if (addends.length < 1) {
+    if (addends.length == 0) {
         finalNums = "0=0";
+    } else {
+        const sum = addends.reduce(
+            (currentTotal: number, num: number) => currentTotal + num,
+            0
+        );
+        const theNums = addends.join("+");
+        finalNums = sum + "=" + theNums;
     }
-    const sum = addends.reduce(
-        (currentTotal: number, num: number) => currentTotal + num,
-        0
-    );
-    const theNums = addends.join("+");
-    finalNums = sum + "=" + theNums;
     return finalNums;
 }
 
