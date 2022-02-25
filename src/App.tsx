@@ -8,9 +8,9 @@ function App(): JSX.Element {
             <header className="App-header">
                 Anissa Spano UD CISC275 Starter Website
             </header>
-            <p>
+            <div>
                 Hello World! Edit <code>src/App.tsx</code> and save.
-            </p>
+            </div>
             <div>
                 {" "}
                 <h1> Tame Impala </h1>
@@ -20,39 +20,31 @@ function App(): JSX.Element {
                 />
             </div>
             <div>
-                <p>
+                <div>
                     <Container>
                         <Row>
                             <Col>
                                 List of Songs:
-                                <ul
-                                    style={{
-                                        border: "1px solid red",
-                                        padding: "4px"
-                                    }}
-                                >
-                                    <li>The Less I Know the Better</li>
-                                    <li>Eventually</li>
-                                    <li>Let It Happen</li>
-                                    <li>Feels Like It Only Goes Backwards</li>
-                                </ul>
+                                <div id="rectangle">
+                                    <ul>
+                                        <li>The Less I Know the Better</li>
+                                        <li>Eventually</li>
+                                        <li>Let It Happen</li>
+                                        <li>
+                                            Feels Like It Only Goes Backwards
+                                        </li>
+                                    </ul>
+                                </div>
                             </Col>
                             <Col>
                                 List of Albums:
-                                <ul
-                                    style={{
-                                        border: "1px solid red",
-                                        padding: "4px"
-                                    }}
-                                >
-                                    <li>Currents</li>
-                                    <li>Lonerism</li>
-                                    <li>The Slow Rush</li>
-                                </ul>
+                                <div id="rectangle">
+                                    Currents Lonerism The Slow Rush
+                                </div>
                             </Col>
                         </Row>
                     </Container>
-                </p>
+                </div>
             </div>
             <div>
                 <Button onClick={() => console.log("Hello World!")}>
