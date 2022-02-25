@@ -140,18 +140,16 @@ export function makeMath(addends: number[]): string {
 export function injectPositive(values: number[]): number[] {
     const anyNegative = values.some((value: number): boolean => value < 0);
     let finalArray: number[] = [];
-    anyNegative;
-    {
+    if (anyNegative) {
         const firstNegIndex = values.findIndex(
             (value: number): boolean => value < 0
         );
-        const sum = values
-            .slice(0, firstNegIndex - 1)
-            .reduce((a, b) => a + b, 0);
-        finalArray = values.splice(firstNegIndex, 0, sum);
-    }
-    !anyNegative;
-    {
+        const sumValues = values.slice(0, firstNegIndex);
+        const prevValues = values.slice(0, firstNegIndex + 1);
+        const followingValues = values.slice(firstNegIndex + 1, values.length);
+        const sum = sumValues.reduce((a: number, b: number) => a + b, 0);
+        finalArray = [...prevValues, sum, ...followingValues];
+    } else {
         const sum = values.reduce(
             (currentSum: number, num: number) => currentSum + num,
             0
