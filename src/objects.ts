@@ -62,7 +62,9 @@ export function isValid(question: Question, answer: string): boolean {
  * name "My First Question" would become "9: My First Q".
  */
 export function toShortForm(question: Question): string {
-    return "";
+    const firstTenChar = question.name.slice(0, 10);
+    const shortForm = question.id + ": " + firstTenChar;
+    return shortForm;
 }
 
 /**
@@ -91,7 +93,8 @@ export function toMarkdown(question: Question): string {
  * `newName`.
  */
 export function renameQuestion(question: Question, newName: string): Question {
-    return question;
+    const renamedQuestion = { ...question, name: newName };
+    return renamedQuestion;
 }
 
 /**
