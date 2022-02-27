@@ -10,7 +10,12 @@ export function makeBlankQuestion(
     name: string,
     type: QuestionType
 ): Question {
-    return {};
+    const body = "";
+    const options: never[] = [];
+    const expected = "";
+    const points = 1;
+    const published = false;
+    return { id, name, body, type, options, expected, points, published };
 }
 
 /**
@@ -21,7 +26,15 @@ export function makeBlankQuestion(
  * HINT: Look up the `trim` and `toLowerCase` functions.
  */
 export function isCorrect(question: Question, answer: string): boolean {
-    return false;
+    let correct = false;
+    const trimWhiteSpace = question.expected.trim();
+    const lowerCase = trimWhiteSpace.toLowerCase();
+    const trimWhiteSpaceAns = answer.trim();
+    const lowerCaseAns = trimWhiteSpaceAns.toLowerCase();
+    if (lowerCase === lowerCaseAns) {
+        correct = true;
+    }
+    return correct;
 }
 
 /**
@@ -31,7 +44,15 @@ export function isCorrect(question: Question, answer: string): boolean {
  * be exactly one of the options.
  */
 export function isValid(question: Question, answer: string): boolean {
-    return false;
+    let valid: boolean;
+    if (question.type == "short_answer_question") {
+        valid = true;
+    } else {
+        valid = question.options.some(
+            (option: string): boolean => option == answer
+        );
+    }
+    return valid;
 }
 
 /**
