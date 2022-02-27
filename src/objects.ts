@@ -85,7 +85,16 @@ export function toShortForm(question: Question): string {
  * Check the unit tests for more examples of what this looks like!
  */
 export function toMarkdown(question: Question): string {
-    return "";
+    const firstTwoLines = "# " + question.name + "\n" + question.body;
+    let lastLines;
+    if (question.type == "multiple_choice_question") {
+        const optionLines = question.options.join("\n- ");
+        lastLines = "\n- " + optionLines;
+    } else {
+        lastLines = question.options;
+    }
+    const newFormat = firstTwoLines + lastLines;
+    return newFormat;
 }
 
 /**
@@ -156,5 +165,20 @@ export function mergeQuestion(
     contentQuestion: Question,
     { points }: { points: number }
 ): Question {
-    return contentQuestion;
+    const body = contentQuestion.body;
+    const type = contentQuestion.type;
+    const options = contentQuestion.options;
+    const expected = contentQuestion.expected;
+    const published = false;
+    const merged = {
+        id,
+        name,
+        body,
+        type,
+        options,
+        expected,
+        points,
+        published
+    };
+    return merged;
 }
