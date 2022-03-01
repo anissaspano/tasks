@@ -1,5 +1,6 @@
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
+import { makeBlankQuestion } from "./objects";
 
 /**
  * Consumes an array of questions and returns a new array with only the questions
@@ -71,21 +72,41 @@ export function removeQuestion(questions: Question[], id: number): Question[] {
  * questions, as an array.
  */
 export function getNames(questions: Question[]): string[] {
-    return [];
+    const questionNames = questions.map(
+        (question: Question): string => question.name
+    );
+    return questionNames;
 }
 
 /***
  * Consumes an array of questions and returns the sum total of all their points added together.
  */
 export function sumPoints(questions: Question[]): number {
-    return 0;
+    const questionPoints = questions.map(
+        (question: Question): number => question.points
+    );
+    const sum = questionPoints.reduce(
+        (currentSum: number, num: number) => currentSum + num,
+        0
+    );
+    return sum;
 }
 
 /***
  * Consumes an array of questions and returns the sum total of the PUBLISHED questions.
  */
 export function sumPublishedPoints(questions: Question[]): number {
-    return 0;
+    const onlyPublishedQuestions = questions.filter(
+        (currentItem) => currentItem.published == true
+    );
+    const questionPoints = onlyPublishedQuestions.map(
+        (question: Question): number => question.points
+    );
+    const sum = questionPoints.reduce(
+        (currentSum: number, num: number) => currentSum + num,
+        0
+    );
+    return sum;
 }
 
 /***
@@ -123,7 +144,10 @@ export function makeAnswers(questions: Question[]): Answer[] {
  * each question is now published, regardless of its previous published status.
  */
 export function publishAll(questions: Question[]): Question[] {
-    return [];
+    const allPublished = questions.map(
+        (question: Question): Question => ({ ...question, published: true })
+    );
+    return allPublished;
 }
 
 /***
@@ -131,7 +155,12 @@ export function publishAll(questions: Question[]): Question[] {
  * are the same type. They can be any type, as long as they are all the SAME type.
  */
 export function sameType(questions: Question[]): boolean {
-    return false;
+    const questionTypes = questions.map(
+        (question: Question): string => question.type
+    );
+    return questionTypes.every(
+        (val, i, questionTypes) => val === questionTypes[0]
+    );
 }
 
 /***
@@ -145,7 +174,10 @@ export function addNewQuestion(
     name: string,
     type: QuestionType
 ): Question[] {
-    return [];
+    const nonBlankSlice = questions.slice(0, questions.length);
+    const alteredBlankQuestion = makeBlankQuestion(id, name, type);
+    const newArray = [...nonBlankSlice, alteredBlankQuestion];
+    return newArray;
 }
 
 /***
@@ -158,7 +190,11 @@ export function renameQuestionById(
     targetId: number,
     newName: string
 ): Question[] {
-    return [];
+    const renamedQuestions = questions.map(
+        (question: Question): Question =>
+            question.id == targetId ? { ...question, name: newName } : question
+    );
+    return renamedQuestions;
 }
 
 /***
@@ -173,7 +209,20 @@ export function changeQuestionTypeById(
     targetId: number,
     newQuestionType: QuestionType
 ): Question[] {
-    return [];
+    const changedTypeQuestions = questions.map(
+        (question: Question): Question =>
+            question.id == targetId
+                ? { ...question, type: newQuestionType }
+                : question
+    );
+    const changedOptionQuestions = changedTypeQuestions.map(
+        (question: Question): Question =>
+            question.options != [] &&
+            question.type != "multiple_choice_question"
+                ? { ...question, options: [] }
+                : question
+    );
+    return changedOptionQuestions;
 }
 
 /**
@@ -207,4 +256,7 @@ export function duplicateQuestionInArray(
     newId: number
 ): Question[] {
     return [];
+}
+function lastIndexOf(questions: Question[]) {
+    throw new Error("Function not implemented.");
 }
