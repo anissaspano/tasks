@@ -19,15 +19,11 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
  * `expected`, and an empty array for its `options`.
  */
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
-    const isNotEmpty = (element: Question): boolean => {
-        return (
-            element.body == "" &&
-            element.expected == "" &&
-            element.options == []
-        );
-    };
-    const onlyNonEmptyQuestions = questions.filter((currentItem) =>
-        isNotEmpty(currentItem)
+    const onlyNonEmptyQuestions = questions.filter(
+        (currentItem) =>
+            currentItem.body != "" &&
+            currentItem.expected != "" &&
+            currentItem.options != []
     );
     return onlyNonEmptyQuestions;
 }
@@ -136,7 +132,18 @@ export function toCSV(questions: Question[]): string {
  * making the `text` an empty string, and using false for both `submitted` and `correct`.
  */
 export function makeAnswers(questions: Question[]): Answer[] {
-    return [];
+    const questionIDs = questions.map(
+        (question: Question): number => question.id
+    );
+    const answers = questionIDs.map(
+        (idvalue: number): Answer => ({
+            questionId: idvalue,
+            text: "",
+            submitted: false,
+            correct: false
+        })
+    );
+    return answers;
 }
 
 /***
