@@ -6,7 +6,10 @@ import { Question, QuestionType } from "./interfaces/question";
  * that are `published`.
  */
 export function getPublishedQuestions(questions: Question[]): Question[] {
-    return [];
+    const onlyPublishedQuestions = questions.filter(
+        (currentItem) => currentItem.published == true
+    );
+    return onlyPublishedQuestions;
 }
 
 /**
@@ -15,7 +18,17 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
  * `expected`, and an empty array for its `options`.
  */
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
-    return [];
+    const isNotEmpty = (element: Question): boolean => {
+        return (
+            element.body == "" &&
+            element.expected == "" &&
+            element.options == []
+        );
+    };
+    const onlyNonEmptyQuestions = questions.filter((currentItem) =>
+        isNotEmpty(currentItem)
+    );
+    return onlyNonEmptyQuestions;
 }
 
 /***
@@ -26,7 +39,17 @@ export function findQuestion(
     questions: Question[],
     id: number
 ): Question | null {
-    return null;
+    let idGivenQuestion = null;
+    const findQuestion = questions.some(
+        (question: Question): boolean => question.id == id
+    );
+    if (findQuestion) {
+        const idIndex = questions.findIndex(
+            (currentItem: Question): boolean => currentItem.id == id
+        );
+        idGivenQuestion = questions[idIndex];
+    }
+    return idGivenQuestion;
 }
 
 /**
@@ -34,7 +57,13 @@ export function findQuestion(
  * with the given `id`.
  */
 export function removeQuestion(questions: Question[], id: number): Question[] {
-    return [];
+    const idIndex = questions.findIndex(
+        (currentItem: Question): boolean => currentItem.id == id
+    );
+    const firstSlice = questions.slice(0, idIndex);
+    const secondSlice = questions.slice(idIndex + 1, questions.length);
+    const finalArray = [...firstSlice, ...secondSlice];
+    return finalArray;
 }
 
 /***
