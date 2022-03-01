@@ -123,7 +123,26 @@ id,name,options,points,published
  * Check the unit tests for more examples!
  */
 export function toCSV(questions: Question[]): string {
-    return "";
+    const questionToString = (question: Question): string => {
+        return (
+            question.id +
+            "," +
+            question.name +
+            "," +
+            question.options.length +
+            "," +
+            question.points +
+            "," +
+            question.published
+        );
+    };
+    const firstLine = "id,name,options,points,published\n";
+    const stringArray = questions.map((question: Question): string =>
+        questionToString(question)
+    );
+    const sepLines = stringArray.join("\n");
+    const finalString = firstLine + sepLines;
+    return finalString;
 }
 
 /**
