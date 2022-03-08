@@ -9,6 +9,7 @@ export function StartAttempt(): JSX.Element {
     }
     return (
         <div>
+            Number of Attempts: {value}
             <Button
                 onClick={() => {
                     setValue(value - 1);
