@@ -24,6 +24,7 @@ export function ChooseTeam(): JSX.Element {
     function clearTeam() {
         const newTeam: React.SetStateAction<string[]> = [];
         setTeam(newTeam);
+        setAllOptions(PEOPLE);
     }
 
     return (

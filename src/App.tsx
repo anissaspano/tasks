@@ -18,7 +18,7 @@ function App(): JSX.Element {
                 Anissa Spano UD CISC275 Starter Website
             </header>
             <hr></hr>
-            {/* <DoubleHalf></DoubleHalf> */}
+            <DoubleHalf></DoubleHalf>
             <hr></hr>
             <ChooseTeam></ChooseTeam>
             <hr></hr>
