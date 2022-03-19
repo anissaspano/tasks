@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { Quiz } from "./Quiz";
+import { QuizEditor } from "./QuizEditor";
+import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
 
 export function QuizView({
     quiz,
@@ -28,25 +31,12 @@ export function QuizView({
             <Row>
                 <Col>
                     <h3>{quiz.title}</h3>
-                    <RecordControls
-                        setQuizWatched={(seen: boolean, liked: boolean) =>
-                            setQuizWatched(Quiz.id, seen, liked)
-                        }
-                        watched={Quiz.watched}
-                        changeEditing={changeEditing}
-                    ></RecordControls>
-                    <QuizRating rating={Quiz.rating}></QuizRating>
-                    <i> Released {Quiz.released}</i>
+                    <p>{quiz.description}</p>
                 </Col>
+                <Col>Number of Questions: {quiz.numQuestions}</Col>
             </Row>
             <Row>
-                <Col>
-                    <p>{Quiz.description}</p>
-                    <SongList songs={Quiz.soundtrack}></SongList>
-                </Col>
-                <Col>
-                    <QuizTrailer id={Quiz.id}></QuizTrailer>
-                </Col>
+                <Col>place questions here</Col>
             </Row>
         </Container>
     );

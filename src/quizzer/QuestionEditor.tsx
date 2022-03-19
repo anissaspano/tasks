@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Col, Form, Row } from "react-bootstrap";
-import { Quiz } from "./Quiz";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import React from "react";
 import { Question } from "./Question";
 
@@ -25,7 +24,7 @@ export function QuestionEditor({
             ...question,
             name: name,
             body: body,
-            points: points,
+            points: parseInt(points) || 0,
             published: published
         });
         changeEditing();
@@ -35,22 +34,73 @@ export function QuestionEditor({
         changeEditing();
     }
 
+    function updatePublished(event: React.ChangeEvent<HTMLInputElement>) {
+        setPublished(event.target.checked);
+    }
     return (
         <div>
-            <Form.Group controlId="formMovieTitle" as={Row}>
+            <Form.Group controlId="formQuestionName" as={Row}>
                 <Form.Label column sm={2}>
-                    Title:
+                    Question Name:
                 </Form.Label>
                 <Col>
                     <Form.Control
-                        value={title}
+                        value={name}
                         onChange={(
                             event: React.ChangeEvent<HTMLInputElement>
-                        ) => setTitle(event.target.value)}
+                        ) => setName(event.target.value)}
                     />
                 </Col>
             </Form.Group>
-            <QuestionEditor> insert question editor info </QuestionEditor>
+            <Form.Group controlId="formQuestionBody" as={Row}>
+                <Form.Label column sm={2}>
+                    Question Body:
+                </Form.Label>
+                <Col>
+                    <Form.Control
+                        value={body}
+                        onChange={(
+                            event: React.ChangeEvent<HTMLInputElement>
+                        ) => setBody(event.target.value)}
+                    />
+                </Col>
+            </Form.Group>
+            <Form.Group controlId="formQuestionPoints" as={Row}>
+                <Form.Label column sm={2}>
+                    Points:
+                </Form.Label>
+                <Col>
+                    <Form.Control
+                        type="number"
+                        value={points}
+                        onChange={(
+                            event: React.ChangeEvent<HTMLInputElement>
+                        ) => setPoints(event.target.value)}
+                    />
+                </Col>
+            </Form.Group>
+            <Form.Check
+                type="switch"
+                id="mode-switch-check"
+                label="Switch Mode"
+                checked={published}
+                onChange={updatePublished}
+            />
+            <Button onClick={save} variant="success" className="me-4">
+                Save
+            </Button>
+
+            <Button onClick={cancel} variant="warning" className="me-5">
+                Cancel
+            </Button>
+
+            <Button
+                onClick={() => deleteQuestion(question.id)}
+                variant="danger"
+                className="me-8"
+            >
+                Delete
+            </Button>
         </div>
     );
 }
