@@ -1,7 +1,7 @@
 import React from "react";
-/*import { Movie } from "../interfaces/movie";
+import { Quiz } from "./Quiz";
 import { Stack } from "react-bootstrap";
-import { MovieView } from "./MovieView";*/
+import { QuizView } from "./QuizView";
 
 export function QuizList({
     quizzes,
