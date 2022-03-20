@@ -12,7 +12,7 @@ export function QuestionEditor({
     changeEditing: () => void;
     question: Question;
     editQuestion: (id: string, newQuestion: Question) => void;
-    deleteQuiz: (id: string) => void;
+    deleteQuestion: (id: string) => void;
 }): JSX.Element {
     const [name, setName] = useState<string>(question.name);
     const [body, setBody] = useState<string>(question.body);
@@ -24,7 +24,7 @@ export function QuestionEditor({
             ...question,
             name: name,
             body: body,
-            points: parseInt(points) || 0,
+            points: points || 0,
             published: published
         });
         changeEditing();
@@ -75,7 +75,7 @@ export function QuestionEditor({
                         value={points}
                         onChange={(
                             event: React.ChangeEvent<HTMLInputElement>
-                        ) => setPoints(event.target.value)}
+                        ) => setPoints(parseInt(event.target.value))}
                     />
                 </Col>
             </Form.Group>

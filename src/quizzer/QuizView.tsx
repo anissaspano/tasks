@@ -36,7 +36,13 @@ export function QuizView({
                 <Col>Number of Questions: {quiz.numQuestions}</Col>
             </Row>
             <Row>
-                <Col>place questions here</Col>
+                {quiz.questions
+                    .map(
+                        (c1) => `<Col className='numberRow'>
+    <div className='numberCol'>${c1}</div>
+</div>`
+                    )
+                    .join("")}
             </Row>
         </Container>
     );
