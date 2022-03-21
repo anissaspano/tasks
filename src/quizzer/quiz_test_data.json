@@ -8,7 +8,7 @@
         "questions": [
             {
                 "name": "In what state was Steve Harvey born?",
-                "body": "Answer should be Steve's brithplace.",
+                "body": "Answer should be Steve's birthplace.",
                 "id": "A1",
                 "points": 1,
                 "expected": "West Virginia",
@@ -23,15 +23,20 @@
                 ]
             },
             {
-                "name": "Town with an Ocean View",
-                "body": "Joe Hisaishi",
+                "name": "What show does Steve Harvey host?",
+                "body": "Choose what show Steve is the host of",
                 "id": "B1",
                 "points": 1,
-                "expected": " hi",
+                "expected": "Family Fued",
                 "type": "multiple_choice_question",
                 "published": true,
                 "answered": false,
-                "options": []
+                "options": [
+                    "Deal or No Deal",
+                    "Survivor",
+                    "Family Fued",
+                    "Jeopardy"
+                ]
             }
         ]
     },

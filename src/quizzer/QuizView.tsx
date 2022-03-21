@@ -19,7 +19,6 @@ export function QuizView({
     function changeEditing() {
         setEditing(!editing);
     }
-
     return editing ? (
         <QuizEditor
             changeEditing={changeEditing}
@@ -31,10 +30,12 @@ export function QuizView({
         <Container>
             <Row>
                 <Col>
-                    <h3>{quiz.title}</h3>
-                    <p>{quiz.description}</p>
+                    <h2 style={{ backgroundColor: "yellow" }}>{quiz.title}</h2>
+                    <h5>{quiz.description}</h5>
                 </Col>
-                <Col>Number of Questions: {quiz.numQuestions}</Col>
+                <Col>
+                    <h6>Number of Questions: {quiz.numQuestions}</h6>
+                </Col>
             </Row>
             <Row>
                 {quiz.questions.map((item) => {

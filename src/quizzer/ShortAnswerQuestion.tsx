@@ -26,19 +26,19 @@ export function ShortAnswerQuestion({
     function updateAnswer(event: ChangeEvent) {
         setChosenAnswer(event.target.value);
     }
-
     return (
         <div>
-            <h3>Short Answer Question</h3>
             <Form.Group controlId="shortAnsQuestion">
-                <Form.Label>{title}</Form.Label>
+                <Form.Label>
+                    <p id="myID">{title}</p>
+                </Form.Label>
                 <Form.Control
                     type="string"
                     value={chosenAnswer}
                     onChange={updateAnswer}
                 />
             </Form.Group>
-            <s>Answer is {checkAnswer(expectedAnswer, chosenAnswer)}</s>
+            <h6>Answer is {checkAnswer(expectedAnswer, chosenAnswer)}</h6>
         </div>
     );
 }
