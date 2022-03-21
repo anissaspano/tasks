@@ -20,13 +20,24 @@ export function Quizzer(): JSX.Element {
     }
 
     return (
-        <h3>
-            Quizzer
-            <QuizList
-                quizzes={quizzes}
-                editQuiz={editQuiz}
-                deleteQuiz={deleteQuiz}
-            ></QuizList>
-        </h3>
+        <div>
+            <h3>
+                Quizzer
+                <QuizList
+                    quizzes={quizzes}
+                    editQuiz={editQuiz}
+                    deleteQuiz={deleteQuiz}
+                ></QuizList>
+            </h3>
+            <h6>
+                Completed Tasks:
+                <ul>
+                    <li>Quizzes are visible</li>
+                    <li>Quizzes have questions</li>
+                    <li>Short answer and multiple choice</li>
+                    <li>Check correctness</li>
+                </ul>
+            </h6>
+        </div>
     );
 }
