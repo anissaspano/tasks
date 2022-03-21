@@ -29,16 +29,14 @@ export function ShortAnswerQuestion({
 
     return (
         <div>
-            <h3>Multiple Choice Question</h3>
-            <Form.Group controlId="shhortAnsQuestion">
+            <h3>Short Answer Question</h3>
+            <Form.Group controlId="shortAnsQuestion">
                 <Form.Label>{title}</Form.Label>
-                <Form.Select value={chosenAnswer} onChange={updateAnswer}>
-                    {options.map((option: string) => (
-                        <option key={option} value={option}>
-                            {option}
-                        </option>
-                    ))}
-                </Form.Select>
+                <Form.Control
+                    type="string"
+                    value={chosenAnswer}
+                    onChange={updateAnswer}
+                />
             </Form.Group>
             <s>Answer is {checkAnswer(expectedAnswer, chosenAnswer)}</s>
         </div>

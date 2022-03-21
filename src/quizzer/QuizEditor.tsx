@@ -2,8 +2,6 @@ import { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { Quiz } from "./Quiz";
 import React from "react";
-import { QuestionEditor } from "./QuestionEditor";
-import { Question } from "./Question";
 
 export function QuizEditor({
     changeEditing,
@@ -71,16 +69,11 @@ export function QuizEditor({
 
             <Button
                 onClick={() => deleteQuiz(quiz.id)}
-                    variant="danger"
-                    className="me-8"
-                >
-                    Delete
+                variant="danger"
+                className="me-8"
+            >
+                Delete
             </Button>
-
-            <QuestionEditor>
-                {quiz.questions.map((q: Question) => (
-                question=q)}
-            </QuestionEditor>
         </div>
     );
 }

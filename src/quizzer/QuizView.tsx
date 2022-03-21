@@ -3,6 +3,7 @@ import { Quiz } from "./Quiz";
 import { QuizEditor } from "./QuizEditor";
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { QuestionLayout } from "./QuestionLayout";
 
 export function QuizView({
     quiz,
@@ -36,13 +37,13 @@ export function QuizView({
                 <Col>Number of Questions: {quiz.numQuestions}</Col>
             </Row>
             <Row>
-                {quiz.questions
-                    .map(
-                        (c1) => `<Col className='numberRow'>
-    <div className='numberCol'>${c1}</div>
-</div>`
-                    )
-                    .join("")}
+                {quiz.questions.map((item) => {
+                    return (
+                        <div key={item.id}>
+                            <QuestionLayout question={item}></QuestionLayout>
+                        </div>
+                    );
+                })}
             </Row>
         </Container>
     );
