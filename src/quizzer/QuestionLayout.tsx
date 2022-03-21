@@ -1,22 +1,24 @@
-import { ListGroup } from "react-bootstrap";
+import { MultChoiceQuestion } from "./MultChoiceQuestion";
 import { Question } from "./Question";
+import { ShortAnswerQuestion } from "./ShortAnswerQuestion";
+import React from "react";
 
 export function QuestionLayout({
-    questions
+    question
 }: {
-    questions: Question[];
+    question: Question;
 }): JSX.Element {
-    return (
-        <ListGroup as="ol" numbered>
-            {questions.map((question: Question) => (
-                <ListGroup.Item
-                    as="li"
-                    key={question.id}
-                    className="d-flex align-items-start"
-                >
-                    <PlaySong song={song}></PlaySong>
-                </ListGroup.Item>
-            ))}
-        </ListGroup>
+    return question.type === "multiple_choice_question" ? (
+        <MultChoiceQuestion
+            title={question.name}
+            options={question.options}
+            expectedAnswer={question.expected}
+        ></MultChoiceQuestion>
+    ) : (
+        <ShortAnswerQuestion
+            title={question.name}
+            options={question.options}
+            expectedAnswer={question.expected}
+        ></ShortAnswerQuestion>
     );
 }
