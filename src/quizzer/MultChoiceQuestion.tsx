@@ -29,7 +29,6 @@ export function MultChoiceQuestion({
 
     return (
         <div>
-            <h3>Multiple Choice Question</h3>
             <Form.Group controlId="multChoiceQuestion">
                 <Form.Label>{title}</Form.Label>
                 <Form.Select value={chosenAnswer} onChange={updateAnswer}>
@@ -40,7 +39,7 @@ export function MultChoiceQuestion({
                     ))}
                 </Form.Select>
             </Form.Group>
-            <s>Answer is {checkAnswer(expectedAnswer, chosenAnswer)}</s>
+            <h6>Answer is {checkAnswer(expectedAnswer, chosenAnswer)}</h6>
         </div>
     );
 }
