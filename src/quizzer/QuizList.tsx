@@ -11,7 +11,6 @@ export function QuizList({
     quizzes: Quiz[];
     deleteQuiz: (id: string) => void;
     editQuiz: (id: string, newQuiz: Quiz) => void;
-    setQuizWatched: (id: string, s: boolean, l: boolean) => void;
 }): JSX.Element {
     return (
         <Stack gap={3}>
